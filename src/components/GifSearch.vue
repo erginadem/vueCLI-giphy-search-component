@@ -8,7 +8,7 @@
                 </form>
             </div>
             <div class="list-group">
-                <img :image="result.image.fixed.height.url" v-for="result in results" />
+                <img :src="result.images.fixed_height.url" v-for="result in results" />
             </div>
         </div>
     </div>
@@ -35,9 +35,10 @@ export default {
 
 
         doSearch() {
-            axios.get('https://api.giphy.com/v1/gifs/search?api_key=' + this.appKey + '&q=' +this.query)
+            axios.get('https://api.giphy.com/v1/gifs/search?api_key=' + this.appKey + '&q=' + this.query)
                 .then( (response) => {
                     console.log(response.data.data)
+                    this.results = response.data.data
                 })
         },
     },
